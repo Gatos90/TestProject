@@ -1,0 +1,1 @@
+Test specifications created at `todo-test-specs.md`. The specs cover core functionality, HTML interface, data persistence, error handling, performance, accessibility, and browser compatibility with clear distinction between hard delete (remove) and soft delete (mark as deleted) operations.
