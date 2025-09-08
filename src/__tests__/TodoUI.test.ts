@@ -71,7 +71,7 @@ describe("TodoUI", () => {
       addBtn.click();
 
       const todos = todoUI.getTodoManager().getTodos();
-      expect(todos[0]?.text).toBe("Test todo");
+      expect(todos[0]?.title).toBe("Test todo");
     });
   });
 
@@ -170,7 +170,7 @@ describe("TodoUI", () => {
       addBtn.click();
 
       expect(todoUI.getTodoManager().getTodos()).toHaveLength(1);
-      expect(todoUI.getTodoManager().getTodos()[0]?.text).toBe("New todo");
+      expect(todoUI.getTodoManager().getTodos()[0]?.title).toBe("New todo");
     });
 
     it("should permanently delete with Remove button", () => {
@@ -266,7 +266,7 @@ describe("TodoUI", () => {
       addBtn.click();
 
       const todos = todoUI.getTodoManager().getTodos();
-      expect(todos[0]?.text).toBe(specialText);
+      expect(todos[0]?.title).toBe(specialText);
 
       const activeTodoList = document.getElementById(
         "active-todo-list",

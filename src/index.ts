@@ -9,7 +9,6 @@
 
 import { TodoManager } from './todo-manager.js';
 import { TodoUI } from './todo-ui.js';
-import './styles.css';
 
 export { TodoManager, TodoUI };
 export * from './types.js';

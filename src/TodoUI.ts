@@ -135,7 +135,7 @@ export class TodoUI {
 
     const todoText = document.createElement("span");
     todoText.className = `todo-text ${todo.status}`;
-    todoText.textContent = todo.text;
+    todoText.textContent = todo.title;
 
     const actions = document.createElement("div");
     actions.className = "todo-actions";
@@ -191,7 +191,7 @@ export class TodoUI {
     button.dataset.todoId = todoId;
     button.setAttribute(
       "aria-label",
-      `${text} todo: ${this.todoManager.getTodoById(todoId)?.text || ""}`,
+      `${text} todo: ${this.todoManager.getTodoById(todoId)?.title || ""}`,
     );
     return button;
   }

@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { Todo } from "./types";
+import { Todo, TodoStatus } from "./types";
 
 export class TodoManager {
   private todos: Todo[] = [];
@@ -13,10 +13,9 @@ export class TodoManager {
 
     const todo: Todo = {
       id: uuidv4(),
-      text: trimmedText,
-      status: "active",
+      title: trimmedText,
+      status: TodoStatus.ACTIVE,
       createdAt: new Date(),
-      updatedAt: new Date(),
     };
 
     this.todos.push(todo);
@@ -33,16 +32,16 @@ export class TodoManager {
   markAsDeleted(id: string): void {
     const todo = this.todos.find((todo) => todo.id === id);
     if (todo) {
-      todo.status = "deleted";
-      todo.updatedAt = new Date();
+      todo.status = TodoStatus.DELETED;
+      todo.deletedAt = new Date();
     }
   }
 
   restoreTodo(id: string): void {
     const todo = this.todos.find((todo) => todo.id === id);
     if (todo) {
-      todo.status = "active";
-      todo.updatedAt = new Date();
+      todo.status = TodoStatus.ACTIVE;
+      delete todo.deletedAt;
     }
   }
 
@@ -51,11 +50,11 @@ export class TodoManager {
   }
 
   getActiveTodos(): Todo[] {
-    return this.todos.filter((todo) => todo.status === "active");
+    return this.todos.filter((todo) => todo.status === TodoStatus.ACTIVE);
   }
 
   getDeletedTodos(): Todo[] {
-    return this.todos.filter((todo) => todo.status === "deleted");
+    return this.todos.filter((todo) => todo.status === TodoStatus.DELETED);
   }
 
   getTodoById(id: string): Todo | undefined {

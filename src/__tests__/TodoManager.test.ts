@@ -1,4 +1,5 @@
 import { TodoManager } from "../TodoManager";
+import { TodoStatus } from "../types";
 
 describe("TodoManager", () => {
   let todoManager: TodoManager;
@@ -12,8 +13,8 @@ describe("TodoManager", () => {
       const todo = todoManager.addTodo("Learn TypeScript");
 
       expect(todo).toBeDefined();
-      expect(todo.text).toBe("Learn TypeScript");
-      expect(todo.status).toBe("active");
+      expect(todo.title).toBe("Learn TypeScript");
+      expect(todo.status).toBe(TodoStatus.ACTIVE);
       expect(todo.id).toBeTruthy();
       expect(todoManager.getTodos()).toHaveLength(1);
     });
@@ -42,14 +43,14 @@ describe("TodoManager", () => {
   describe("markAsDeleted", () => {
     it("should change todo status to deleted while maintaining in data structure", () => {
       const todo = todoManager.addTodo("Test todo");
-      expect(todo.status).toBe("active");
+      expect(todo.status).toBe(TodoStatus.ACTIVE);
 
       todoManager.markAsDeleted(todo.id);
 
       const todos = todoManager.getTodos();
       expect(todos).toHaveLength(1);
-      expect(todos[0]?.status).toBe("deleted");
-      expect(todos[0]?.text).toBe("Test todo");
+      expect(todos[0]?.status).toBe(TodoStatus.DELETED);
+      expect(todos[0]?.title).toBe("Test todo");
       expect(todos[0]?.id).toBe(todo.id);
     });
 
@@ -57,10 +58,10 @@ describe("TodoManager", () => {
       const todo = todoManager.addTodo("Toggle test");
 
       todoManager.markAsDeleted(todo.id);
-      expect(todoManager.getTodos()[0]?.status).toBe("deleted");
+      expect(todoManager.getTodos()[0]?.status).toBe(TodoStatus.DELETED);
 
       todoManager.restoreTodo(todo.id);
-      expect(todoManager.getTodos()[0]?.status).toBe("active");
+      expect(todoManager.getTodos()[0]?.status).toBe(TodoStatus.ACTIVE);
     });
   });
 
