@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Todo Manager</h1>
+            <div class="stats" role="status" aria-live="polite">
+                <span id="total-count">Total: 0</span>
+                <span id="active-count">Active: 0</span>
+                <span id="deleted-count">Deleted: 0</span>
+            </div>
+        </header>
+
+        <main>
+            <section class="add-todo">
+                <div class="input-container">
+                    <input 
+                        type="text" 
+                        id="todo-input" 
+                        placeholder="Enter a new todo..."
+                        maxlength="200"
+                        aria-label="New todo text"
+                        autofocus
+                    >
+                    <button id="add-btn" type="button" aria-label="Add todo">Add</button>
+                </div>
+                <div id="error-message" class="error-message" role="alert" aria-live="assertive"></div>
+            </section>
+
+            <section class="todo-lists">
+                <div class="active-todos">
+                    <h2>Active Todos</h2>
+                    <ul id="active-todo-list" class="todo-list" role="list">
+                    </ul>
+                </div>
+
+                <div class="deleted-todos">
+                    <h2>Deleted Todos</h2>
+                    <ul id="deleted-todo-list" class="todo-list" role="list">
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="./TodoUI.js"></script>
+</body>
+</html>
